@@ -28,7 +28,7 @@ export const AboutScreen  = () => {
     <div className="grid grid-cols-1 place-items-center">
       <div
         className="
-             flex   space-x-10   mt-3   "
+         flex  space-x-10   mt-3   "
       >
         <div className="max-w-[590px]">
           <div>
@@ -85,15 +85,12 @@ export const AboutScreen  = () => {
         </div>
       </div>
 
-      <div className="flex flex-row space-x-10 ">
-        
+      <div className="md:flex md:flex-row md:space-x-10  grid grid-cols-1 mb-4 gap-8 ">
            {
                mentors.map((item) => (
                 <MentorCard role={item.role} about={item.about} fName={item.fName} lName={item.lName}  />
                ))
            }
-
-            
        
       </div>
     </div>

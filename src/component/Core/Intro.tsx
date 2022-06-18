@@ -23,7 +23,7 @@ export const IntroWindow = () => {
 
           <h6 className="mr-10 text-xs">__ Mubarak I.</h6>
 
-          <div className="btn cursor-pointer">
+          <div className="btn cursor-pointer ">
             {">"} Know me_
           </div>
 

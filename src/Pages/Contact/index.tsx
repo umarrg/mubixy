@@ -1,5 +1,5 @@
 import star from "../../assets/Star 1.svg";
-import fork from "../../assets/forks.jpg"
+import fork from "../../assets/forks.jpg";
 
 export const Contact = () => {
  

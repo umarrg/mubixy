@@ -12,8 +12,7 @@ export const BlogScreen = () => {
                 </div>
                 <div className="text-primary text-lg font-bold">A list of all my blogs and posts</div>
             </div>
-
-            <div className="grid grid-cols-4 gap-10 ">
+            <div className="grid md:grid-cols-4 gap-10 ">
                 <BlogCard />
                 <BlogCard />
                 <BlogCard />

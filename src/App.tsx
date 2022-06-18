@@ -17,7 +17,7 @@ function App() {
       <NavBar />
       <div className="body">
       
-          <div className="h-full">
+          <div className="h-screen">
             <Home />
 
         {/* <div className="sticky left-full top-[70vh] left-full z-20">
@@ -29,22 +29,22 @@ function App() {
           </div>
        
         <Zoom>
-          <div id="about" className="h-full">
+          <div id="about" className="mb-48">
             <AboutScreen />
           </div>
         </Zoom>
         <Zoom>
-          <div id="experience" className="h-full">
+          <div id="experience" className="mb-48">
             <ExperienceScreen />
           </div>
         </Zoom>
         <Zoom>
-          <div id="project" className="h-full">
+          <div id="project" className="mb-48">
             <ProjectScreen />
           </div>
         </Zoom>
         <Zoom>
-          <div id="blog" className="">
+          <div id="blog" className="mb-48">
             <BlogScreen />
 
           </div>

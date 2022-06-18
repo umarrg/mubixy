@@ -26,7 +26,7 @@ export const Chat = () => {
 
               
                 <div
-                    className=" bg-[#E6F1FF] w-1/3
+                    className=" bg-[#E6F1FF]  md:w-1/3
         rounded-tl-[40px] rounded-tr-[40px] rounded-bl-[60px] fixed right-10  bottom-24 z-10 px-4"
                 >
                     <div className="mt-4 flex space-x-4">
