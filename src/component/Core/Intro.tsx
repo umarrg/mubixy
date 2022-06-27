@@ -11,7 +11,7 @@ export const IntroWindow = () => {
       <h1 className="text-2xl font-bold">
         $: Hi 👋, I am Codeswot <br /> <span className="ml-2">I Turn code into Stuff,</span>
       </h1>
-      <h2 className="mt-10 md:text-xl font-semibold sm:text-sm ">
+      <h2 className="mt-10 md:text-xl font-semibold ">
         Your Friendly neighbourhood developer! <br /> With great power comes great <br />
         responsibilities. Hard work, studies and <br /> constant coding I have
         acquired the awesome <br /> power of developing
@@ -21,12 +21,12 @@ export const IntroWindow = () => {
         <h4 className="text-sm pr-8">$: “Always believe in you ability to achieve greatness”   </h4>
         <div className="flex justify-end px-14 items-center mt-4">
 
-          <h6 className="mr-10 text-xs">__ Mubarak I.</h6>
+          <h6 className="mr-10 text-xs  sm:text[8px]">__ Mubarak I.</h6>
 
-          <div className="btn cursor-pointer ">
-            {">"} Know me_
-          </div>
-
+          <div className="btn cursor-pointer md:font-bold ">
+            {">"} <span className="sm:text-lg"> Know me_
+           </span>
+         </div>
         </div>
       </div>
     </div>

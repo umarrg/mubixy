@@ -7,7 +7,7 @@ export const NavBar =() => {
 
   return (
       
-    <nav className="navigation z-10">
+    <nav className="navigation ">
       <a href="/" className="brand-name">
         {`{`}C{`}`}
       </a>
@@ -42,7 +42,6 @@ export const NavBar =() => {
           <li>
           <a href="#contact"> <span className="nav-number">04.</span>Contact</a>
           </li>
-          
           <button className="mobile-resume-btn">Resume</button>     
         </ul>
       </div>

@@ -1,4 +1,5 @@
 import "./App.css";
+// @ts-ignore
 import Zoom from "react-reveal/Zoom";
 import { NavBar } from "./component/Navbar";
 import { Home } from "./Pages/Home";

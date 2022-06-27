@@ -73,17 +73,18 @@ export const AboutScreen  = () => {
               </div>
             </div>
           </div>
+          <div className="md:flex md:flex-row md:space-x-10 mb-4">
+        <div className="text-xl my-5 text-white ">
+          {">"} <span className="text-primary">Mentors_</span>
+        </div>
+      </div>
         </div>
 
         <div>
           <img src={mub} width="300px" />
         </div>
       </div>
-      <div className="grid grid-cols-5 mb-4">
-        <div className="text-xl my-5 text-white ">
-          {">"} <span className="text-primary">Mentors_</span>
-        </div>
-      </div>
+    
 
       <div className="md:flex md:flex-row md:space-x-10  grid grid-cols-1 mb-4 gap-8 ">
            {
