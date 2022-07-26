@@ -8,8 +8,22 @@ const icons = [{
     img: v1
 }, { img: v2 }, { img: v3 }]
 
+type tech = {
+    name: string;
+    logo: string;
+  };
+interface Project {
+    logo: string;
+    name: string;
+    about: string;
+    technologies: Array<tech>;
+    
+   
+}
 
-export const ProjectCard = () => {
+
+
+export const ProjectCard = ({name, about, technologies, logo}: Project) => {
     return (
 
         
@@ -19,36 +33,29 @@ export const ProjectCard = () => {
                 <div className="relative">
                     <div className='bg-silver rounded-xl px-4 py-2 custom_shadow '>
                         <div className='mb-5 text-black flex items-center justify-between'>
-                            <div>JanguAsk</div>
+                            <div>{name}</div>
                             <div className="rounded-full bg-white p-4 absolute top-[-45px] right-[-25px] border-8 border-[#353353]
                         " >
-                                <img src={jangu} />
+                                <img src={logo} />
                             </div>
 
 
                         </div>
 
-                        <div className="mt-10 text-xs">The Social Education App, lorem
-                            ipsun blah blah blah for the sake
-                            of testing here we go...</div>
+                        <div className="mt-10 text-xs">{about}</div>
 
                         <div className='flex justify-between mt-3'>
-                           <div className="flex flex-wrap">
-                           <div className="bg-[#C4C4C4] rounded-full w-20 flex items-center space-x-2 justify-center mx-1 mb-1">
-                                <img src={flutter} width="20px" />
-                                <div className="text-xs">Flutter</div>
+                        <div className="flex flex-wrap">
+                          {
+                            technologies.map((tech, idx) => (
+                                <div className="bg-[#C4C4C4] rounded-full w-20 flex items-center space-x-2 justify-center mx-1 mb-1">
+                                <img src={tech.logo} width="20px" />
+                                <div className="text-xs">{tech.name}</div>
 
                             </div>
-                            <div className="bg-[#C4C4C4] rounded-full w-20 flex items-center space-x-2 justify-center mx-1 mb-1">
-                                <img src={flutter} width="20px" />
-                                <div className="text-xs">Flutter</div>
-
-                            </div>
-                            <div className="bg-[#C4C4C4] rounded-full w-20 flex items-center space-x-2 justify-center mx-1 mb-1">
-                                <img src={flutter} width="20px" />
-                                <div className="text-xs" >Flutter</div>
-
-                            </div>
+                            ))
+                          }
+                            
                             
                            
                            </div>

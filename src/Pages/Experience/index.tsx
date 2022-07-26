@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { MobileExperienceScreen } from "./Mobile";
 import "./style.css";
 
 export const ExperienceScreen = () => {
@@ -15,8 +16,12 @@ export const ExperienceScreen = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4text-white place-items-center items-start mt-3">
-        <div>
+      <div className="md:hidden">
+        <MobileExperienceScreen />
+      </div>
+
+      <div className="grid grid-cols-2 gap-4text-white place-items-center items-start mt-3    ">
+        <div className="hidden md:block">
           <div className="bg-white w-[1px] h-96 relative">
             <div className="flex items-center absolute top-[2rem]">
               <div
@@ -152,7 +157,7 @@ export const ExperienceScreen = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="hidden md:block">
           {janguClick ? <Jangu /> : null}
           {geeksClick ? <Geeks /> : null}
           {palgoClick ? <Palgo /> : null}

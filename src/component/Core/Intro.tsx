@@ -23,8 +23,8 @@ export const IntroWindow = () => {
 
           <h6 className="mr-10 text-xs  sm:text[8px]">__ Mubarak I.</h6>
 
-          <div className="btn cursor-pointer md:font-bold ">
-            {">"} <span className="sm:text-lg"> Know me_
+          <div className="btn cursor-pointer md:font-bold text-sm sm:text-base ">
+            {">"} <span className=""> Know me_
            </span>
          </div>
         </div>
