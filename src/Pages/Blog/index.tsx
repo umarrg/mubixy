@@ -63,22 +63,26 @@ const blog =[
 export const BlogScreen = () => {
 
     return (
-        <div className="grid grid-cols-1 place-item-center">
-            <div className='mb-10'>
+        <div className="grid grid-cols-1 place-items-center">
+            <div className='mb-10 text-center '>
                 <div className="text-white text-3xl font-bold">
                     All Blog & Posts
                 </div>
                 <div className="text-primary text-lg font-bold">A list of all my blogs and posts</div>
             </div>
-            <div className="grid md:grid-cols-4 gap-10 ">
+            <div className="">
+            <div className="grid md:grid-cols-3 gap-16 ">
                {
                 blog.map((item, idx) => (
-                    <BlogCard title={item.title} category={item.category} description={item.description} image={item.image} />
+                   <div className="md:w-72">
+                     <BlogCard title={item.title} category={item.category} description={item.description} image={item.image} />
+                   </div>
                 ))
                }
                 
                
 
+            </div>
             </div>
 
         </div>

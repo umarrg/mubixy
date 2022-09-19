@@ -31,12 +31,12 @@ export const ProjectCard = ({name, about, technologies, logo}: Project) => {
 
          
                 <div className="relative">
-                    <div className='bg-silver rounded-xl px-4 py-2 custom_shadow '>
+                    <div className='bg-silver rounded-xl px-2 py-2 custom_shadow '>
                         <div className='mb-5 text-black flex items-center justify-between'>
                             <div>{name}</div>
-                            <div className="rounded-full bg-white p-4 absolute top-[-45px] right-[-25px] border-8 border-[#353353]
+                            <div className="rounded-full bg-white p-3 absolute top-[-45px] right-[-25px] border-8 border-[#353353]
                         " >
-                                <img src={logo} />
+                                <img src={logo} width="40px" />
                             </div>
 
 

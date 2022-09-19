@@ -1,7 +1,7 @@
 import "./style.css";
 export const IntroWindow = () => {
   return (
-    <div className="intro-container md:h-[500px] h-[600px]">
+    <div className="intro-container md:h-[500px] h-[600px] md:w-[570px]">
     <div className="intro-header">
       <div className="control" style={{ backgroundColor: "#FF0000" }}></div>
       <div className="control" style={{ backgroundColor: "#FAFF00" }}></div>
@@ -11,7 +11,7 @@ export const IntroWindow = () => {
       <h1 className="text-2xl font-bold">
         $: Hi 👋, I am Codeswot <br /> <span className="ml-2">I Turn code into Stuff,</span>
       </h1>
-      <h2 className="mt-10 md:text-xl font-semibold ">
+      <h2 className="mt-10 md:text-lg font-semibold ">
         Your Friendly neighbourhood developer! <br /> With great power comes great <br />
         responsibilities. Hard work, studies and <br /> constant coding I have
         acquired the awesome <br /> power of developing

@@ -15,11 +15,12 @@ const icons = [
 import { IntroWindow } from "../../component/Core/Intro";
 export const Home = () => {
   return (
-    <div className="text-white grid md:grid-cols-2 place-items-center">
-      <div className="flex items-start">
+    <div className="text-white grid md:grid-cols-1 place-items-center">
+      <div className="flex ">
         <IntroWindow />
+        <div className="w-[400px] hidden md:block"></div>
       </div>
-      <div className="hidden md:block fixed top-24 right-0">
+      <div className="hidden md:block fixed bottom-0 top-24 right-0">
         <img src={vector} />
       </div>
       <div className="hidden md:block fixed top-24 right-8">
@@ -31,7 +32,7 @@ export const Home = () => {
           mubarak@codeswot.io
         </a>
       </div>
-      <div className="fixed w-full bottom-0 left-0 hidden md:block">
+      <div className="fixed w-full bottom-1 left-0 hidden md:block">
       <img src={hash} width="130px" height="300px" />
       </div>
       <div className="fixed w-full bottom-1 left-10 hidden md:block">

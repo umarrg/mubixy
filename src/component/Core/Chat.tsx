@@ -21,6 +21,14 @@ export const Chat = () => {
       from: "me",
     },
   ]);
+
+  const sendMessage = ()=> {
+    messages.push({
+      message: message,
+      client: true,
+    });
+   setMessage("");
+  }
   useEffect(() => {
     const id = setInterval(() => setDateTime(new Date()), 1000);
     return () => {
@@ -98,18 +106,19 @@ export const Chat = () => {
                   type="text"
                   
                   onChange={(e) => setMessage(e.target.value)}
-                  onMouseEnter={() => messages.push({
-                    message: message,
-                    client: true,
-                  })}
+                  // onKeyUp={() => messages.push({
+                  //   message: message,
+                  //   client: true,
+                  // })}[]
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full pr-10 p-4  "
                   placeholder="type message"
                 />
-                <div className="  z-auto absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <img src={sendIcon} width="25px" className="cursor-pointer" onClick={() => messages.push({
-                    message: message,
-                    client: true,
-                  })} />
+                <div className=" absolute inset-y-0 right-0 flex items-center pr-3 ">
+                  <div onClick={sendMessage}>
+
+                 
+                  <img src={sendIcon} width="25px" className="cursor-pointer"  />
+                   </div>
                 </div>
                
               </div>

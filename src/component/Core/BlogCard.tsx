@@ -16,7 +16,7 @@ export const BlogCard = ({title, description, category, image}:Blog) => {
      
                 <div className="blogcard bg-silver rounded-3xl">
                     <div>
-                        <img src={image} className="rounded-t-3xl rounded-r-3xl" />
+                        <img src={image} width="100%" className="rounded-t-3xl rounded-r-3xl" />
                     </div>
                     <div className='px-5 py-5'>
                         <div className='flex justify-between items-center'>

@@ -1,5 +1,6 @@
 import mub from "../../assets/mub.svg";
 import { MentorCard } from "../../component/Core/MentorCard";
+import "./style.css";
 
 const mentors = [
     {
@@ -26,17 +27,24 @@ const mentors = [
 export const AboutScreen  = () => {
   return (
     <div className="grid grid-cols-1 place-items-center">
+      <div className=" sm:block md:hidden ">
+          <img src={mub}  className="hidden sm:block" />
+      </div>
       <div
         className="
          flex  space-x-10   mt-3   "
       >
+        
         <div className="max-w-[590px]">
+        <div className="mb-7 flex justify-center">
+          <img src={mub} width="300px" className="hide_md" />
+        </div>
           <div>
             <div className="text-3xl font-semibold mb-4 text-white">
               <span className="text-primary mr-2">{">"} 01.</span>
               About
             </div>
-            <div className=" text-lg font-medium text-white">
+            <div className=" text-lg font-medium text-white  ">
               Hello, my name is Mubarak Ibrahim i enjoy writting sweet code and
               doing lorem ipsun for test flight and s0m3 course of running home
               free if you can go home free
@@ -74,13 +82,13 @@ export const AboutScreen  = () => {
             </div>
           </div>
           <div className="md:flex md:flex-row md:space-x-10 mb-4">
-        <div className="text-xl my-5 text-white ">
+        <div className="text-xl my-10 text-white ">
           {">"} <span className="text-primary">Mentors_</span>
         </div>
       </div>
         </div>
 
-        <div>
+        <div className="hidden md:block">
           <img src={mub} width="300px" />
         </div>
       </div>

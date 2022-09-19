@@ -103,6 +103,7 @@ button:hover {
   }
 .navigation{
   padding: 0.6rem 1.8rem;
+  
 
 }
   .navigation-menu ul {
@@ -110,7 +111,7 @@ button:hover {
     align-items: center;    
     flex-direction: column;
     position: absolute;
-    top: 40px;
+    top: 63px;
     left: 0;
     width: 100%;
     height: calc(100vh - 60px);
