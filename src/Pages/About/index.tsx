@@ -1,4 +1,4 @@
-import mub from "../../assets/mub.svg";
+import mub from "../../assets/muby.jpg";
 import { MentorCard } from "../../component/Core/MentorCard";
 import "./style.css";
 

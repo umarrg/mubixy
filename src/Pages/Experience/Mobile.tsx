@@ -13,7 +13,7 @@ export const MobileExperienceScreen = () => {
         <div className="h-[1px] w-full bg-white relative">
           <div className="flex items-center absolute  ">
             <div
-              className="bg-gray-50 rounded-full p-4 custom_container cursor-pointer"
+              className="bg-gray-50 rounded-full p-4 custom_container cursor-pointer ml-4"
               onClick={() => {
                 setGeeksClick(false), setPalgoClick(false), setLexClick(false);
                 setJanguClick(true);

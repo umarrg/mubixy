@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { RiMenu3Line } from "react-icons/ri";
-import './style.css'
+import "./style.css";
 
-export const NavBar =() => {
+export const NavBar = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   return (
-      
     <nav className="navigation ">
       <a href="/" className="brand-name">
         {`{`}C{`}`}
@@ -18,34 +17,63 @@ export const NavBar =() => {
         }}
       >
         {/* icon from Heroicons.com */}
-          <RiMenu3Line />
+        <RiMenu3Line />
       </button>
       <div
         className={
           isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
-          
         }
       >
         <ul>
           <li>
-            <a href="#about"> <span className="nav-number">00.</span>About</a>
+            <a href="#about" onClick={() => {
+                setIsNavExpanded(false);
+              }}>
+              {" "}
+              <span className="nav-number">00.</span>About
+            </a>
           </li>
           <li>
-          <a href="#experience" > <span className="nav-number">01.</span>Experience</a>
+            <a
+              href="#experience"
+              onClick={() => {
+                setIsNavExpanded(false);
+              }}
+            >
+              {" "}
+              <span className="nav-number">01.</span>Experience
+            </a>
           </li>
           <li>
-          <a href="#project"> <span className="nav-number">02.</span>Projects</a>
+            <a href="#project" onClick={() => {
+                setIsNavExpanded(false);
+              }}>
+              {" "}
+              <span className="nav-number">02.</span>Projects
+            </a>
           </li>
           <li>
-          <a href="#blog"> <span className="nav-number">03.</span>Blog</a>
+            <a href="#blog" onClick={() => {
+                setIsNavExpanded(false);
+              }}>
+              {" "}
+              <span className="nav-number">03.</span>Blog
+            </a>
           </li>
           <li>
-          <a href="#contact"> <span className="nav-number">04.</span>Contact</a>
+            <a href="#contact" onClick={() => {
+                setIsNavExpanded(false);
+              }}>
+              {" "}
+              <span className="nav-number">04.</span>Contact
+            </a>
           </li>
-          <button className="mobile-resume-btn">Resume</button>     
+          <button className="mobile-resume-btn" onClick={() => {
+                setIsNavExpanded(false);
+              }}>Resume</button>
         </ul>
       </div>
       <button className="desktop-resume-btn">Resume</button>
     </nav>
   );
-}
+};

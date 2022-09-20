@@ -47,7 +47,10 @@ export const Chat = () => {
             className=" bg-[#E6F1FF]  md:w-1/3
         rounded-tl-[40px] rounded-tr-[40px] rounded-bl-[60px] fixed right-10  bottom-24 z-10 px-4"
           >
-            <div className="mt-4 flex space-x-4">
+            <div className="flex justify-between mt-4">
+
+          
+            <div className=" flex space-x-4">
               <div className="relative">
                 <img className="w-12 h-12 rounded-full" src={mubeey} alt="" />
                 <span className="bottom-0 right-0 absolute  w-3 h-3 bg-[#64FFDA] border-2 border-white rounded-full"></span>
@@ -56,6 +59,11 @@ export const Chat = () => {
                 <div className="text-black text-sm">Mubarak Ibrahim</div>
                 <div className="text-xs text-gray">The Codeswot</div>
               </div>
+            </div>
+            <div onClick={()=> setDialog(false) } className="cursor-pointer mr-1">
+              <img src="https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/close-512.png" alt="close" width={"20"} />
+            </div>
+
             </div>
             <div className="flex align-center space-x-4 justify-end">
               <img src={voice} width="15px" className="cursor-pointer" />
