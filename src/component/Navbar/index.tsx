@@ -2,7 +2,10 @@ import { useState } from "react";
 import { RiMenu3Line } from "react-icons/ri";
 import "./style.css";
 
-export const NavBar = () => {
+interface NavbarProp {
+  resume: string;
+}
+export const NavBar = ({ resume }: NavbarProp) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   return (
@@ -26,9 +29,12 @@ export const NavBar = () => {
       >
         <ul>
           <li>
-            <a href="#about" onClick={() => {
+            <a
+              href="#about"
+              onClick={() => {
                 setIsNavExpanded(false);
-              }}>
+              }}
+            >
               {" "}
               <span className="nav-number">00.</span>About
             </a>
@@ -45,35 +51,52 @@ export const NavBar = () => {
             </a>
           </li>
           <li>
-            <a href="#project" onClick={() => {
+            <a
+              href="#project"
+              onClick={() => {
                 setIsNavExpanded(false);
-              }}>
+              }}
+            >
               {" "}
               <span className="nav-number">02.</span>Projects
             </a>
           </li>
           <li>
-            <a href="#blog" onClick={() => {
+            <a
+              href="#blog"
+              onClick={() => {
                 setIsNavExpanded(false);
-              }}>
+              }}
+            >
               {" "}
               <span className="nav-number">03.</span>Blog
             </a>
           </li>
           <li>
-            <a href="#contact" onClick={() => {
+            <a
+              href="#contact"
+              onClick={() => {
                 setIsNavExpanded(false);
-              }}>
+              }}
+            >
               {" "}
               <span className="nav-number">04.</span>Contact
             </a>
           </li>
-          <button className="mobile-resume-btn" onClick={() => {
-                setIsNavExpanded(false);
-              }}>Resume</button>
+          <button
+            className="mobile-resume-btn"
+            onClick={() => {
+              setIsNavExpanded(false);
+            }}
+          >
+            {" "}
+            <a href={resume} target="_blank">Resume</a>
+          </button>
         </ul>
       </div>
-      <button className="desktop-resume-btn">Resume</button>
+      <button className="desktop-resume-btn">
+        <a href={resume} target="_blank">Resume</a>
+      </button>
     </nav>
   );
 };

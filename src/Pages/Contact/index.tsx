@@ -1,7 +1,9 @@
 import star from "../../assets/Star 1.svg";
 import fork from "../../assets/forks.jpg";
-
-export const Contact = () => {
+interface ContactProp  {
+  footag: string;
+}
+export const Contact = ({footag}:ContactProp) => {
  
   return (
     <div className="grid grid-cols-1 place-items-center relative">
@@ -39,7 +41,7 @@ export const Contact = () => {
         <div className="text-center mb-4 text-white">or</div>
 
         <div className="flex justify-center place-items-center">
-         <a href="mailto:mubarak@codeswot.io">
+         <a href="mailto:elmubarak333@gmail.com">
          <button>Email me_</button>
          </a>
 
@@ -50,7 +52,7 @@ export const Contact = () => {
 
       <div className="font-extralight text-white text-body-2 text-center mt-24 relative bottom-5">
         <div className=" w-80">
-          Built with coffee ☕, ReactJs and fun stuff by codeswot
+          {footag}
         </div>
 
         <div className="flex space-x-8 justify-center mt-5">

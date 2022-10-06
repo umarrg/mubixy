@@ -1,34 +1,60 @@
 import mub from "../../assets/muby.jpg";
 import { MentorCard } from "../../component/Core/MentorCard";
 import "./style.css";
-
-const mentors = [
-    {
-        fName: 'Johan',
-        lName: 'Walhout',
-        about: 'The live like counter is an awesome software engineer with a tremendous skilset he is super',
-        role: 'CTO Palgo'
-    },
-    {
-        fName: 'Chris',
-        lName: 'Sells',
-        about: 'The live like counter is an awesome software engineer with a tremendous skilset he is super',
-        role: 'PM Meta'
-    },
-    {
-        fName: 'Shams',
-        lName: 'Khalil',
-        about: 'The live like counter is an awesome software engineer with a tremendous skilset he is super',
-        role: 'CTO Lexington'
-    }
-]
+import db from "../../firebase";
+import { useEffect, useState } from "react";
+import { Mentor } from "../../sharedTypes/types";
 
 
-export const AboutScreen  = () => {
+
+
+// const mentors = [
+//     {
+//         fName: 'Johan',
+//         lName: 'Walhout',
+//         about: 'The live like counter is an awesome software engineer with a tremendous skilset he is super',
+//         role: 'CTO Palgo'
+//     },
+//     {
+//         fName: 'Chris',
+//         lName: 'Sells',
+//         about: 'The live like counter is an awesome software engineer with a tremendous skilset he is super',
+//         role: 'PM Meta'
+//     },
+//     {
+//         fName: 'Shams',
+//         lName: 'Khalil',
+//         about: 'The live like counter is an awesome software engineer with a tremendous skilset he is super',
+//         role: 'CTO Lexington'
+//     }
+// ]
+
+
+interface AboutProp {
+  image: string;
+  favoriteTools: Array<string>
+}
+
+export const AboutScreen  = ({image, favoriteTools}: AboutProp) => {
+  const [mentors, setMentors] = useState<Mentor[]>([])
+  useEffect(() => {
+    db.collection("mentors").onSnapshot((snapshot) => {
+      if (snapshot) {
+        const arr = [];
+        let d = snapshot.docs.map((doc) => (doc.data()));
+        arr.push(d);
+        setMentors(d);
+        setTimeout(() => {
+          console.log(">>men", d);
+        }, 5000);
+      }
+    });
+  }, []);
+  
   return (
     <div className="grid grid-cols-1 place-items-center">
       <div className=" sm:block md:hidden ">
-          <img src={mub}  className="hidden sm:block" />
+          <img src={image}  className="hidden sm:block" />
       </div>
       <div
         className="
@@ -37,7 +63,7 @@ export const AboutScreen  = () => {
         
         <div className="max-w-[590px]">
         <div className="mb-7 flex justify-center">
-          <img src={mub} width="300px" className="hide_md" />
+          <img src={image} width="300px" className="hide_md" />
         </div>
           <div>
             <div className="text-3xl font-semibold mb-4 text-white">
@@ -89,7 +115,7 @@ export const AboutScreen  = () => {
         </div>
 
         <div className="hidden md:block">
-          <img src={mub} width="300px" />
+          <img src={image} width="300px" />
         </div>
       </div>
     
@@ -97,7 +123,7 @@ export const AboutScreen  = () => {
       <div className="md:flex md:flex-row md:space-x-10  grid grid-cols-1 mb-4 gap-8 ">
            {
                mentors.map((item) => (
-                <MentorCard role={item.role} about={item.about} fName={item.fName} lName={item.lName}  />
+                <MentorCard role={item.title} about={item.bio} fName={item.fName} lName={item.lName} bio={item.bio} desc={item.desc} />
                ))
            }
        

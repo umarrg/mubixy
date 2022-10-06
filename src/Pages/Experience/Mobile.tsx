@@ -1,11 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Experience } from "../../sharedTypes/types";
 import "./style.css";
 
-export const MobileExperienceScreen = () => {
-  const [janguClick, setJanguClick] = useState(true);
+interface ExperienceProp {
+  exp: Array<Experience>;
+}
+
+export const MobileExperienceScreen = ({ exp }: ExperienceProp) => {
+  const [janguClick, setJanguClick] = useState(false);
   const [geeksClick, setGeeksClick] = useState(false);
   const [palgoClick, setPalgoClick] = useState(false);
   const [lexClick, setLexClick] = useState(false);
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      setJanguClick(true)
+      
+    }, 3000);
+    
+  }, [])
+  
 
   return (
     <div className="text-white mt-14">
@@ -133,122 +148,125 @@ export const MobileExperienceScreen = () => {
             </div>
           </div>
         </div>
-        
       </div>
       <div className="mt-14">
-          {janguClick ? <Jangu /> : null}
-          {geeksClick ? <Geeks /> : null}
-          {palgoClick ? <Palgo /> : null}
-          {lexClick ? <Lex /> : null}
-        </div>
+        {janguClick ? (
+          <Jangu
+            title={exp[2]?.title}
+            startDate={exp[2]?.startDate}
+            tasks={exp[2]?.tasks}
+            company={exp[2]?.company}
+            endDate={exp[2]?.endDate}
+          />
+        ) : null}
+        {geeksClick ? (
+          <Geeks
+            title={exp[2]?.title}
+            startDate={exp[3]?.startDate}
+            tasks={exp[3]?.tasks}
+            company={exp[3]?.company}
+            endDate={exp[3]?.endDate}
+          />
+        ) : null}
+        {palgoClick ? (
+          <Palgo
+            title={exp[0]?.title}
+            startDate={exp[0]?.startDate}
+            tasks={exp[0]?.tasks}
+            company={exp[0]?.company}
+            endDate={exp[0]?.endDate}
+          />
+        ) : null}
+        {lexClick ? (
+          <Lex
+            title={exp[1]?.title}
+            startDate={exp[1]?.startDate}
+            tasks={exp[1]?.tasks}
+            company={exp[1]?.company}
+            endDate={exp[1]?.endDate}
+          />
+        ) : null}
+      </div>
     </div>
   );
 };
 
-function Jangu() {
+interface ChildProp {
+  title: string;
+  startDate: string;
+  endDate: string;
+  company: string;
+  tasks: Array<string>;
+}
+
+function Jangu({ title, startDate, tasks, endDate, company }: ChildProp) {
   return (
     <div>
-      <h2 className="text-[#E6F1FF] text-3xl mb-3">Mobile Developer</h2>
-      <h6 className="text-[14px] font-[200]">May 12, 2019 -June 15 2021</h6>
+      <h2 className="text-[#E6F1FF] text-3xl mb-3">{company}</h2>
+      <h2 className="text-[#E6F1FF] text-large mb-3">{title}</h2>
+      <h6 className="text-[14px] font-[200]">
+        {startDate} - {endDate}
+      </h6>
 
-      <div className="my-6 text-base md:w-57">
-        <span className="text-primary ">. </span> Worked as lorem ipsum to make
-        sure i am running
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span>Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
+      {tasks.map((item) => (
+        <div className="my-6 text-base md:w-57">
+          <span className="text-primary ">. </span> {item}
+        </div>
+      ))}
     </div>
   );
 }
 
-function Geeks() {
+function Geeks({ title, startDate, tasks, endDate, company }: ChildProp) {
   return (
     <div>
-      <h2 className="text-[#E6F1FF] text-3xl mb-3">Geeks</h2>
-      <h6 className="text-[14px] font-[200]">May 12, 2019 -June 15 2021</h6>
+      <h2 className="text-[#E6F1FF] text-3xl mb-3">{company}</h2>
+      <h2 className="text-[#E6F1FF] text-large mb-3">{title}</h2>
+      <h6 className="text-[14px] font-[200]">
+        {startDate} - {endDate}
+      </h6>
 
-      <div className="my-6 text-base md:w-57">
-        <span className="text-primary ">. </span> Worked as lorem ipsum to make
-        sure i am running
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span>Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
+      {tasks.map((item) => (
+        <div className="my-6 text-base md:w-57">
+          <span className="text-primary ">. </span> {item}
+        </div>
+      ))}
     </div>
   );
 }
 
-function Palgo() {
+function Palgo({ title, startDate, tasks, endDate, company }: ChildProp) {
   return (
     <div>
-      <h2 className="text-[#E6F1FF] text-3xl mb-3">Palgo</h2>
-      <h6 className="text-[14px] font-[200]">May 12, 2019 -June 15 2021</h6>
+      <h2 className="text-[#E6F1FF] text-3xl mb-3">{company}</h2>
+      <h2 className="text-[#E6F1FF] text-large mb-3">{title}</h2>
+      <h6 className="text-[14px] font-[200]">
+        {startDate} - {endDate}
+      </h6>
 
-      <div className="my-6 text-base md:w-57">
-        <span className="text-primary ">. </span> Worked as lorem ipsum to make
-        sure i am running
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span>Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
+      {tasks.map((item) => (
+        <div className="my-6 text-base md:w-57">
+          <span className="text-primary ">. </span> {item}
+        </div>
+      ))}
     </div>
   );
 }
 
-function Lex() {
+function Lex({ title, startDate, tasks, endDate, company }: ChildProp) {
   return (
     <div>
-      <h2 className="text-[#E6F1FF] text-3xl mb-3">Lex</h2>
-      <h6 className="text-[14px] font-[200]">May 12, 2019 -June 15 2021</h6>
+      <h2 className="text-[#E6F1FF] text-3xl mb-3">{company}</h2>
+      <h2 className="text-[#E6F1FF] text-large mb-3">{title}</h2>
+      <h6 className="text-[14px] font-[200]">
+        {startDate} - {endDate}
+      </h6>
 
-      <div className="my-6 text-base md:w-57">
-        <span className="text-primary ">. </span> Worked as lorem ipsum to make
-        sure i am running
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span>Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
+      {tasks.map((item) => (
+        <div className="my-6 text-base md:w-57">
+          <span className="text-primary ">. </span> {item}
+        </div>
+      ))}
     </div>
   );
 }

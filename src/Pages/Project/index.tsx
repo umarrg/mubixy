@@ -2,6 +2,10 @@ import "./style.css";
 import { ProjectCard } from "../../component/Core/ProjectCard";
 import jangu from "../../assets/jangu.svg";
 import flutter from "../../assets/flutter.svg";
+import { useEffect, useState } from "react";
+import { Project } from "../../sharedTypes/types";
+import db from "../../firebase";
+
 
 const project = [
   {
@@ -67,6 +71,20 @@ const project = [
 ];
 
 export const ProjectScreen = () => {
+  const [projects, setProjects] = useState<Project[]>([])
+  useEffect(() => {
+    db.collection("Projects").onSnapshot((snapshot) => {
+      if (snapshot) {
+        const arr = [];
+        let d = snapshot.docs.map((doc) => (doc.data()));
+        arr.push(d);
+        setProjects(d);
+        setTimeout(() => {
+          console.log(">>pro", projects);
+        }, 5000);
+      }
+    });
+  }, []);
   return (
     <div className="grid grid-cols-1 place-items-center ">
       <div className=" mb-16">
@@ -77,9 +95,9 @@ export const ProjectScreen = () => {
       
       <div className="grid md:grid-cols-3 gap-16 ">
         {
-            project.map((item, idx)=> (
+            projects.map((item, idx)=> (
               <div className="md:w-72">
-                   <ProjectCard name={item.name} logo={item.logo} about={item.about} technologies={item.technologies} />
+                   <ProjectCard name={item.title} logo={item.icon} about={item.description} technologies={item.technologies} />
 
               </div>
              

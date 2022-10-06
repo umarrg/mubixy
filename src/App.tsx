@@ -10,28 +10,88 @@ import { BlogScreen } from "./Pages/Blog";
 import { Contact } from "./Pages/Contact";
 import { Chat } from "./component/Core/Chat";
 import img from "../src/assets/down.svg";
-
-
+import { useEffect, useState } from "react";
+import db from "./firebase";
+import { Profile, Quote } from "./sharedTypes/types";
+interface QouteProp {}
 function App() {
+  const [info, setInfo] = useState<Profile>({
+    about: "",
+    email: "",
+    favoriteTools: [""],
+    fooTag: "",
+    github: "",
+    intro: "",
+    linkedIn: "",
+    profilePhoto: "",
+    resume: "",
+    twitter: "",
+  });
+  const [qoute, setQoute] = useState<Quote>({
+    quote: "",
+    author: "",
+    default: true,
+    id: "",
+  });
+
+
+  useEffect(() => {
+    db.collection("codeswot").onSnapshot((snapshot) => {
+      if (snapshot) {
+       
+        let d = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }));
+
+       
+        setInfo(d[0].data);
+        setTimeout(() => {
+          console.log(">>WW", info);
+        }, 5000);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    db.collection("quotes").onSnapshot((snapshot) => {
+      if (snapshot) {
+        let d = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }));
+        setQoute(d[0].data);
+        setTimeout(() => {
+          console.log(">>", qoute);
+        }, 5000);
+      }
+    });
+  }, []);
   return (
     <div className="App">
-      <NavBar />
+      <NavBar resume={info.resume} />
       <div className="body">
-      
-          <div className="h-screen">
-            <Home />
+        <div className="h-screen">
+          
+            <Home
+              email={info.email}
+              about={info.about}
+              fooTag={info.fooTag}
+              github={info.github}
+              intro={info.intro}
+              twitter={info.twitter}
+            
+              resume={info.resume}
+              profilePhoto={info.profilePhoto}
+              linkedIn={info.linkedIn}
+              favoriteTools={info.favoriteTools}
+              qoute={qoute.quote}
+            />
+        </div>
 
-        {/* <div className="sticky left-full top-[70vh] left-full z-20">
-        <img src={img} width="40px" />
-      </div>
-      */}
-     
-           
-          </div>
-       
         <Zoom>
           <div id="about" className="mb-48">
-            <AboutScreen />
+            <AboutScreen image={info.profilePhoto} favoriteTools={[]} />
           </div>
         </Zoom>
         <Zoom>
@@ -44,19 +104,17 @@ function App() {
             <ProjectScreen />
           </div>
         </Zoom>
-        <Zoom>
+        {/* <Zoom>
           <div id="blog" className="mb-48">
             <BlogScreen />
-
           </div>
-        </Zoom>
+        </Zoom> */}
         <Zoom>
           <div id="contact" className=" mt-36">
-            <Contact />
+            <Contact footag={info.footTag} />
           </div>
         </Zoom>
-        <Chat />
-
+        {/* <Chat /> */}
       </div>
     </div>
   );

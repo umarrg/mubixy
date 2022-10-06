@@ -1,12 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Experience } from "../../sharedTypes/types";
 import { MobileExperienceScreen } from "./Mobile";
+import db from "../../firebase";
 import "./style.css";
 
 export const ExperienceScreen = () => {
-  const [janguClick, setJanguClick] = useState(true);
+  
+  const [experience, setExperience] = useState<Experience[]>([]);
+  const [janguClick, setJanguClick] = useState(false);
   const [geeksClick, setGeeksClick] = useState(false);
   const [palgoClick, setPalgoClick] = useState(false);
   const [lexClick, setLexClick] = useState(false);
+  useEffect(() => {
+    db.collection("experience").onSnapshot((snapshot) => {
+      if (snapshot) {
+        const arr = [];
+        let d = snapshot.docs.map((doc) => doc.data());
+        arr.push(d);
+        setExperience(d);
+        setJanguClick(true);
+      }
+    });
+  }, []);
 
   return (
     <div className="text-white">
@@ -15,9 +30,8 @@ export const ExperienceScreen = () => {
           {">"}02 <span className="text-white">Experience</span>
         </div>
       </div>
-
       <div className="md:hidden">
-        <MobileExperienceScreen />
+        <MobileExperienceScreen exp={experience}  />
       </div>
 
       <div className="grid grid-cols-2 gap-4text-white place-items-center items-start mt-3    ">
@@ -28,8 +42,8 @@ export const ExperienceScreen = () => {
                 className="bg-gray-50 rounded-full p-4 custom_container ma-20 cursor-pointer"
                 onClick={() => {
                   setGeeksClick(false),
-                  setPalgoClick(false),
-                  setLexClick(false);
+                    setPalgoClick(false),
+                    setLexClick(false);
                   setJanguClick(true);
                 }}
               >
@@ -53,17 +67,16 @@ export const ExperienceScreen = () => {
                   </div>
                 </div>
               </div>
-              <h4 className="ml-16">JanguAsk</h4>
+              <h4 className="ml-16">{experience[2]?.company}</h4>
             </div>
+
             <div className="flex items-center absolute top-[8rem]">
               <div
                 className="bg-gray-50 rounded-full p-4 custom_container ma-20 cursor-pointer"
                 onClick={() => {
-                    setPalgoClick(false),
-                    setLexClick(false);
-                    setJanguClick(false);
-                    setGeeksClick(true)
-
+                  setPalgoClick(false), setLexClick(false);
+                  setJanguClick(false);
+                  setGeeksClick(true);
                 }}
               >
                 <div
@@ -86,51 +99,17 @@ export const ExperienceScreen = () => {
                   </div>
                 </div>
               </div>
-              <h4 className="ml-16">GeeksAxis</h4>
+              <h4 className="ml-16">{experience[3]?.company}</h4>
             </div>
 
             <div className="flex items-center absolute top-[14rem]">
               <div
                 className="bg-gray-50 rounded-full p-4 custom_container ma-20 cursor-pointer"
                 onClick={() => {
-                    setLexClick(false);
-                    setJanguClick(false);
-                    setGeeksClick(false);
-                    setPalgoClick(true)
-
-                }}
-              >
-                <div
-                  className={
-                    palgoClick
-                      ? "bg-primary rotate-[-46.46deg] sheet"
-                      : "bg-[#C4C4C4] rotate-[-46.46deg] sheet"
-                  }
-                >
-                  <div className=" d_text rotate-[46.46deg] ">
-                    <div
-                      className={
-                        palgoClick
-                          ? "rounded-full w-8 h-8 text-center bg-[#353353] absolute left-7 pt-1 text-sm  text-white"
-                          : "rounded-full w-8 h-8 text-center bg-white absolute left-7 pt-1 text-sm  text-black"
-                      }
-                    >
-                      1
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h4 className="ml-16">Palgo</h4>
-            </div>
-
-            <div className="flex items-center absolute top-[20rem]">
-              <div
-                className="bg-gray-50 rounded-full p-4 custom_container ma-20 cursor-pointer"
-                onClick={() => {
-                    setJanguClick(false);
-                    setGeeksClick(false);
-                    setPalgoClick(false);
-                    setLexClick(true)
+                  setLexClick(true);
+                  setJanguClick(false);
+                  setGeeksClick(false);
+                  setPalgoClick(false);
                 }}
               >
                 <div
@@ -148,130 +127,169 @@ export const ExperienceScreen = () => {
                           : "rounded-full w-8 h-8 text-center bg-white absolute left-7 pt-1 text-sm  text-black"
                       }
                     >
+                      1
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h4 className="ml-16">{experience[1]?.company}</h4>
+            </div>
+
+            <div className="flex items-center absolute top-[20rem]">
+              <div
+                className="bg-gray-50 rounded-full p-4 custom_container ma-20 cursor-pointer"
+                onClick={() => {
+                  setJanguClick(false);
+                  setGeeksClick(false);
+                  setPalgoClick(true);
+                  setLexClick(false);
+                }}
+              >
+                <div
+                  className={
+                    palgoClick
+                      ? "bg-primary rotate-[-46.46deg] sheet"
+                      : "bg-[#C4C4C4] rotate-[-46.46deg] sheet"
+                  }
+                >
+                  <div className=" d_text rotate-[46.46deg] ">
+                    <div
+                      className={
+                        palgoClick
+                          ? "rounded-full w-8 h-8 text-center bg-[#353353] absolute left-7 pt-1 text-sm  text-white"
+                          : "rounded-full w-8 h-8 text-center bg-white absolute left-7 pt-1 text-sm  text-black"
+                      }
+                    >
                       0
                     </div>
                   </div>
                 </div>
               </div>
-              <h4 className="ml-16">Lexington tech.</h4>
+              <h4 className="ml-16">{experience[0]?.company}</h4>
             </div>
           </div>
         </div>
         <div className="hidden md:block">
-          {janguClick ? <Jangu /> : null}
-          {geeksClick ? <Geeks /> : null}
-          {palgoClick ? <Palgo /> : null}
-          {lexClick ? <Lex /> : null}
+          {janguClick && (
+            <div>
+              {experience[2]?.title.trim() === "" ? (
+                <div></div>
+              ) : (
+                <Jangu
+                  title={experience[2]?.title}
+                  startDate={experience[2]?.startDate}
+                  tasks={experience[2]?.tasks}
+                  endDate={experience[2]?.endDate}
+                />
+              )}
+            </div>
+          )}
+          {geeksClick ? (
+            <Geeks
+              title={experience[3]?.title}
+              startDate={experience[3]?.startDate}
+              tasks={experience[3]?.tasks}
+              endDate={experience[3]?.endDate}
+            />
+          ) : null}
+
+          {lexClick ? (
+            <Lex
+              title={experience[1]?.title}
+              startDate={experience[1]?.startDate}
+              endDate={experience[1]?.endDate}
+              tasks={experience[1]?.tasks}
+            />
+          ) : null}
+          {palgoClick ? (
+            <Palgo
+              title={experience[0]?.title}
+              startDate={experience[0]?.startDate}
+              tasks={experience[0]?.tasks}
+              endDate={experience[0]?.endDate}
+            />
+          ) : null}
         </div>
       </div>
     </div>
   );
 };
 
-function Jangu() {
+interface ChildProp {
+  title: string;
+  startDate: string;
+  endDate: string;
+  tasks: Array<string>;
+}
+
+function Jangu({ title, startDate, tasks, endDate }: ChildProp) {
   return (
     <div>
-      <h2 className="text-[#E6F1FF] text-3xl mb-3">Mobile Developer</h2>
-      <h6 className="text-[14px] font-[200]">May 12, 2019 -June 15 2021</h6>
+      <h2 className="text-[#E6F1FF] text-3xl mb-3">{title}</h2>
+      <h6 className="text-[14px] font-[200]">
+        {" "}
+        {startDate} - {endDate}
+      </h6>
 
-      <div className="my-6 text-base md:w-57">
-        <span className="text-primary ">. </span> Worked as lorem ipsum to make
-        sure i am running
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span>Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
+      {tasks.map((item) => (
+        <div className="my-6 text-base md:w-57">
+          <span className="text-primary ">. </span> {item}
+        </div>
+      ))}
     </div>
   );
 }
 
-function Geeks() {
+function Geeks({ title, startDate, tasks, endDate }: ChildProp) {
   return (
     <div>
-      <h2 className="text-[#E6F1FF] text-3xl mb-3">Geeks</h2>
-      <h6 className="text-[14px] font-[200]">May 12, 2019 -June 15 2021</h6>
+      <h2 className="text-[#E6F1FF] text-3xl mb-3">{title}</h2>
+      <h6 className="text-[14px] font-[200]">
+        {" "}
+        {startDate} - {endDate}
+      </h6>
 
-      <div className="my-6 text-base md:w-57">
-        <span className="text-primary ">. </span> Worked as lorem ipsum to make
-        sure i am running
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span>Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
+      {tasks.map((item) => (
+        <div className="my-6 text-base md:w-57">
+          <span className="text-primary ">. </span> {item}
+        </div>
+      ))}
     </div>
   );
 }
 
-function Palgo() {
+function Palgo({ title, startDate, tasks, endDate }: ChildProp) {
   return (
     <div>
-      <h2 className="text-[#E6F1FF] text-3xl mb-3">Palgo</h2>
-      <h6 className="text-[14px] font-[200]">May 12, 2019 -June 15 2021</h6>
+      <h2 className="text-[#E6F1FF] text-3xl mb-3">{title}</h2>
+      <h6 className="text-[14px] font-[200]">
+        {" "}
+        {startDate} - {endDate}
+      </h6>
 
-      <div className="my-6 text-base md:w-57">
-        <span className="text-primary ">. </span> Worked as lorem ipsum to make
-        sure i am running
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span>Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
+      {tasks.map((item) => (
+        <div className="my-6 text-base md:w-57">
+          <span className="text-primary ">. </span> {item}
+        </div>
+      ))}
     </div>
   );
 }
 
-function Lex() {
+function Lex({ title, startDate, tasks, endDate }: ChildProp) {
   return (
     <div>
-      <h2 className="text-[#E6F1FF] text-3xl mb-3">Lex</h2>
-      <h6 className="text-[14px] font-[200]">May 12, 2019 -June 15 2021</h6>
+      <h2 className="text-[#E6F1FF] text-3xl mb-3">{title}</h2>
+      <h6 className="text-[14px] font-[200]">
+        {" "}
+        {startDate} - {endDate}
+      </h6>
 
-      <div className="my-6 text-base md:w-57">
-        <span className="text-primary ">. </span> Worked as lorem ipsum to make
-        sure i am running
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span>Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
-
-      <div className="my-6 text-base md:w-[400px]">
-        <span className="text-primary ">. </span> Worked as the ninja to bring
-        forth the front end live and who is i used Docer,Azure and CF
-      </div>
+      {tasks.map((item) => (
+        <div className="my-6 text-base md:w-57">
+          <span className="text-primary ">. </span> {item}
+        </div>
+      ))}
     </div>
   );
 }
