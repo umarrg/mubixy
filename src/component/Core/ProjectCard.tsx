@@ -5,7 +5,9 @@ import flutter from "../../assets/flutter.svg";
 import jangu from "../../assets/jangu.svg";
 import "./style.css";
 import TextTruncate from "react-text-truncate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link, Tech } from "../../sharedTypes/types";
+import db from "../../firebase";
 
 const icons = [
   {
@@ -24,10 +26,46 @@ interface Project {
   name: string;
   about: string;
   technologies: Array<String>;
+  links: Array<Link>;
 }
 
-export const ProjectCard = ({ name, about, technologies, logo }: Project) => {
- const [showAllText, setShowAllText] = useState(false);
+export const ProjectCard = ({
+  name,
+  about,
+  technologies,
+  logo,
+  links,
+}: Project) => {
+  const [showAllText, setShowAllText] = useState(false);
+  const [techs, setTechs] = useState<Tech[]>([]);
+  useEffect(() => {
+
+    getTech()
+
+    
+  }, []);
+  
+  const getTech = () => {
+    const arr = [];
+
+    technologies.forEach((ele) => {
+      const data = {
+        id: ele,
+      };
+
+      db.collection("techs")
+        .doc(data.id)
+        .get()
+        .then(function (snapshot) {
+          const data = snapshot.data()
+        
+          arr.push(data);
+          
+          setTechs(arr)
+         
+        });
+    });
+  };
 
   return (
     <div className="relative">
@@ -43,47 +81,64 @@ export const ProjectCard = ({ name, about, technologies, logo }: Project) => {
         </div>
 
         <TextTruncate
-          line={showAllText ? 9999 : 3}
+          line={showAllText ? 9999 : 2}
           element="small"
           truncateText="…"
           text={about}
           textTruncateChild={
             <div className="">
               <div
-              onClick={() => setShowAllText(true)}
-              style={{
-                textTransform: "capitalize",
-                color: "green",
-                fontSize: "12px",
-                cursor: "pointer",
-              }}
-            >
-              more
-            </div>
+                onClick={() => setShowAllText(true)}
+                style={{
+                  textTransform: "capitalize",
+                  color: "green",
+                  fontSize: "12px",
+                  cursor: "pointer",
+                }}
+              >
+                more
+              </div>
             </div>
           }
         />
 
-        {/* <div className="mt-10 text-xs">{about}</div> */}
+        
 
         <div className="grid grid-cols-2 mt-3">
           <div className="flex flex-wrap">
-            {technologies.map((tech, idx) => (
-              <div className="bg-[#C4C4C4] rounded-full w-24  flex items-center space-x-1 justify-center  mb-1 h-5 p-2">
-                <img src={""} width="20px" />
-                <div className="text-xs">{tech}</div>
+            {techs.map((tech, idx) => (
+              <div className="bg-[#C4C4C4] rounded-full w-24  flex items-center space-x-1 justify-between   mb-1 h-8 p-2" key={tech.id}>
+                <img src={tech.icon} width="20px"  />
+                <div className="text-xs">{tech.name}</div>
               </div>
             ))}
           </div>
 
-          <div className="">
-           <div className="flex">
-           {icons.map((item) => (
-              <a className="mx-2">
-                <img src={item.img} width="17px" />
-              </a>
-            ))}
-           </div>
+          <div className="flex justify-end">
+            <div className="flex">
+              {links.map((item) => (
+                <>
+                  {item.type === "android" && (
+                    <a className="mx-2" href={item.link}>
+                      {" "}
+                      <img src={v2} width="17px" />{" "}
+                    </a>
+                  )}
+                  {item.type === "ios" && (
+                    <a className="mx-2" href={item.link}>
+                      {" "}
+                      <img src={v1} width="17px" />{" "}
+                    </a>
+                  )}
+                  {item.type === "web" && (
+                    <a className="mx-2" href={item.link} target="_blank">
+                      {" "}
+                      <img src={v3} width="17px" />{" "}
+                    </a>
+                  )}
+                </>
+              ))}
+            </div>
           </div>
         </div>
       </div>

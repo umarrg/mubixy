@@ -5,7 +5,6 @@ import db from "../../firebase";
 import "./style.css";
 
 export const ExperienceScreen = () => {
-  
   const [experience, setExperience] = useState<Experience[]>([]);
   const [janguClick, setJanguClick] = useState(false);
   const [geeksClick, setGeeksClick] = useState(false);
@@ -18,7 +17,9 @@ export const ExperienceScreen = () => {
         let d = snapshot.docs.map((doc) => doc.data());
         arr.push(d);
         setExperience(d);
-        setJanguClick(true);
+        setTimeout(() => {
+          setJanguClick(true);
+        }, 2000);
       }
     });
   }, []);
@@ -31,7 +32,7 @@ export const ExperienceScreen = () => {
         </div>
       </div>
       <div className="md:hidden">
-        <MobileExperienceScreen exp={experience}  />
+        <MobileExperienceScreen exp={experience} />
       </div>
 
       <div className="grid grid-cols-2 gap-4text-white place-items-center items-start mt-3    ">

@@ -9,7 +9,20 @@ export type Profile = {
   profilePhoto: string;
   linkedIn: string;
   favoriteTools: Array<string>;
+};
 
+export type Link = {
+  id: string;
+  link: string;
+  type: string;
+};
+
+export type Tech = {
+  description: string;
+  icon: string;
+  id: string;
+  name: string;
+  url: string;
 };
 
 export type Project = {
@@ -20,7 +33,7 @@ export type Project = {
   technologies: Array<string>;
   title: string;
   webLink: string;
-
+  links: Array<Link>;
 };
 export type Experience = {
   id: string;
@@ -33,7 +46,6 @@ export type Experience = {
   startDate: string;
   endDate: string;
   title: string;
-
 };
 
 export type Mentor = {
@@ -48,15 +60,10 @@ export type Mentor = {
   twitter: string;
   fName: string;
   lName: string;
-
 };
 export type Quote = {
   id: string;
   default: Boolean;
   quote: string;
   author: string;
-
-
 };
-
-

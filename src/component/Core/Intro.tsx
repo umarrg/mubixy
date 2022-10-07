@@ -19,8 +19,8 @@ export const IntroWindow = ({ about, intro, qoute }: IntroProp) => {
           <div className="typing-demo text-2xl">$:</div>
         ) : (
           <div>
-            <h1 className="text-2xl font-bold">$: Hi 👋, I am Codeswot</h1>
-            <h1 className="text-2xl font-bold">I Turn code into Stuff,</h1>
+            <h1 className="text-2xl font-bold">$: Hi 👋, I am Codeswot </h1>
+            <h1 className="text-2xl font-bold">I Turn Coffee into Code</h1>
             <h2 className="mt-10 md:text-sm font-semibold ">{intro}</h2>
 
             <div className="absolute w-full bottom-10">

@@ -3,9 +3,8 @@ import { ProjectCard } from "../../component/Core/ProjectCard";
 import jangu from "../../assets/jangu.svg";
 import flutter from "../../assets/flutter.svg";
 import { useEffect, useState } from "react";
-import { Project } from "../../sharedTypes/types";
+import { Project, Tech } from "../../sharedTypes/types";
 import db from "../../firebase";
-
 
 const project = [
   {
@@ -71,12 +70,12 @@ const project = [
 ];
 
 export const ProjectScreen = () => {
-  const [projects, setProjects] = useState<Project[]>([])
+  const [projects, setProjects] = useState<Project[]>([]);
   useEffect(() => {
-    db.collection("Projects").onSnapshot((snapshot) => {
+    db.collection("projects").onSnapshot((snapshot) => {
       if (snapshot) {
         const arr = [];
-        let d = snapshot.docs.map((doc) => (doc.data()));
+        let d = snapshot.docs.map((doc) => doc.data());
         arr.push(d);
         setProjects(d);
         setTimeout(() => {
@@ -85,6 +84,9 @@ export const ProjectScreen = () => {
       }
     });
   }, []);
+
+ 
+
   return (
     <div className="grid grid-cols-1 place-items-center ">
       <div className=" mb-16">
@@ -92,17 +94,20 @@ export const ProjectScreen = () => {
           {">"}03 <span className="text-white">Project</span>
         </div>
       </div>
-      
-      <div className="grid md:grid-cols-3 gap-16 ">
-        {
-            projects.map((item, idx)=> (
-              <div className="md:w-72">
-                   <ProjectCard name={item.title} logo={item.icon} about={item.description} technologies={item.technologies} />
 
-              </div>
-             
-            ))
-        }
+      <div className="grid md:grid-cols-3 gap-16 ">
+        {projects.map((item, idx) => (
+          <div className="md:w-72">
+            <ProjectCard
+              name={item.title}
+              logo={item.icon}
+              about={item.description}
+              technologies={item.technologies}
+              links={item.links}
+              
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
