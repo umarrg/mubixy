@@ -25,7 +25,7 @@ interface Project {
   logo: string;
   name: string;
   about: string;
-  technologies: Array<String>;
+  technologies: Array<string>;
   links: Array<Link>;
 }
 
