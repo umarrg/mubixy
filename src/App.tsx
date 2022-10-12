@@ -46,9 +46,7 @@ function App() {
 
        
         setInfo(d[0].data);
-        setTimeout(() => {
-          console.log(">>WW", info);
-        }, 5000);
+        
       }
     });
   }, []);
@@ -61,9 +59,7 @@ function App() {
           data: doc.data(),
         }));
         setQoute(d[0].data);
-        setTimeout(() => {
-          console.log(">>", qoute);
-        }, 5000);
+        
       }
     });
   }, []);
@@ -91,7 +87,7 @@ function App() {
 
         <Zoom>
           <div id="about" className="mb-48">
-            <AboutScreen image={info.profilePhoto} favoriteTools={[]} />
+            <AboutScreen image={info.profilePhoto} favoriteTools={info.favoriteTools} about={info.about} />
           </div>
         </Zoom>
         <Zoom>
@@ -111,7 +107,12 @@ function App() {
         </Zoom> */}
         <Zoom>
           <div id="contact" className=" mt-36">
-            <Contact footag={info.footTag} />
+            <Contact footag={info.footTag}  github={info.github}
+             
+              twitter={info.twitter}
+            
+             
+              linkedIn={info.linkedIn} />
           </div>
         </Zoom>
         {/* <Chat /> */}

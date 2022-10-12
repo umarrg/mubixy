@@ -5,9 +5,6 @@ import db from "../../firebase";
 import { useEffect, useState } from "react";
 import { Mentor } from "../../sharedTypes/types";
 
-
-
-
 // const mentors = [
 //     {
 //         fName: 'Johan',
@@ -29,19 +26,19 @@ import { Mentor } from "../../sharedTypes/types";
 //     }
 // ]
 
-
 interface AboutProp {
   image: string;
-  favoriteTools: Array<string>
+  about: string;
+  favoriteTools: Array<string>;
 }
 
-export const AboutScreen  = ({image, favoriteTools}: AboutProp) => {
-  const [mentors, setMentors] = useState<Mentor[]>([])
+export const AboutScreen = ({ image, favoriteTools, about }: AboutProp) => {
+  const [mentors, setMentors] = useState<Mentor[]>([]);
   useEffect(() => {
     db.collection("mentors").onSnapshot((snapshot) => {
       if (snapshot) {
         const arr = [];
-        let d = snapshot.docs.map((doc) => (doc.data()));
+        let d = snapshot.docs.map((doc) => doc.data());
         arr.push(d);
         setMentors(d);
         setTimeout(() => {
@@ -50,36 +47,26 @@ export const AboutScreen  = ({image, favoriteTools}: AboutProp) => {
       }
     });
   }, []);
-  
+
   return (
     <div className="grid grid-cols-1 place-items-center">
       <div className=" sm:block md:hidden ">
-          <img src={image}  className="hidden sm:block" />
+        <img src={image} className="hidden sm:block" />
       </div>
       <div
         className="
          flex  space-x-10   mt-3   "
       >
-        
         <div className="max-w-[590px]">
-        <div className="mb-7 flex justify-center">
-          <img src={image} width="300px" className="hide_md" />
-        </div>
+          <div className="mb-7 flex justify-center">
+            <img src={image} width="300px" className="hide_md" />
+          </div>
           <div>
             <div className="text-3xl font-semibold mb-4 text-white">
               <span className="text-primary mr-2">{">"} 01.</span>
               About
             </div>
-            <div className=" text-lg font-medium text-white  ">
-              Hello, my name is Mubarak Ibrahim i enjoy writting sweet code and
-              doing lorem ipsun for test flight and s0m3 course of running home
-              free if you can go home free
-            </div>
-
-            <div className="mt-5 text-lg font-medium text-white">
-              Basically i can be the best version of my self like i always say
-              “Believe in your ability to achieve greatness”
-            </div>
+            <div className=" text-lg font-medium text-white  ">{about}</div>
 
             <div className="mt-8 text-white">
               <div className="text-lg font-bold mb-2">
@@ -87,46 +74,50 @@ export const AboutScreen  = ({image, favoriteTools}: AboutProp) => {
               </div>
 
               <div className="w-72 flex justify-between text-white  text-sm">
-                <div>
+                {favoriteTools.map((item) => (
                   <div>
-                    <span className="text-primary">.</span>Flutter
+                    <div>
+                      <span className="text-primary">.</span>
+                      {item}
+                    </div>
+                    
                   </div>
-                  <div>
-                    <span className="text-primary">.</span>Node
-                  </div>
-                </div>
+                ))}
 
-                <div>
+                {/* <div>
                   <div>
                     <span className="text-primary">.</span>Typescript
                   </div>
                   <div>
                     <span className="text-primary">.</span>React
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
           <div className="md:flex md:flex-row md:space-x-10 mb-4">
-        <div className="text-xl my-10 text-white ">
-          {">"} <span className="text-primary">Mentors_</span>
-        </div>
-      </div>
+            <div className="text-xl my-10 text-white ">
+              {">"} <span className="text-primary">Mentors_</span>
+            </div>
+          </div>
         </div>
 
         <div className="hidden md:block">
           <img src={image} width="300px" />
         </div>
       </div>
-    
 
       <div className="md:flex md:flex-row md:space-x-10  grid grid-cols-1 mb-4 gap-8 ">
-           {
-               mentors.map((item) => (
-                <MentorCard role={item.title} about={item.bio} fName={item.fName} lName={item.lName} bio={item.bio} desc={item.desc} />
-               ))
-           }
-       
+        {mentors.map((item) => (
+          <MentorCard
+            role={item.title}
+            about={item.bio}
+            fName={item.fName}
+            lName={item.lName}
+            bio={item.bio}
+            desc={item.desc}
+          />
+        ))}
       </div>
     </div>
   );

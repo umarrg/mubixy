@@ -8,13 +8,13 @@ interface IntroProp {
 
 export const IntroWindow = ({ about, intro, qoute }: IntroProp) => {
   return (
-    <div className="intro-container md:h-[500px] h-[600px] md:w-[570px]">
+    <div className="intro-container md:h-[500px] h-[600px] md:w-[570px] ">
       <div className="intro-header">
         <div className="control" style={{ backgroundColor: "#FF0000" }}></div>
         <div className="control" style={{ backgroundColor: "#FAFF00" }}></div>
         <div className="control" style={{ backgroundColor: "#64FFDA" }}></div>
       </div>
-      <div className="intro-body px-8 mt-8">
+      <div className="intro-body px-8 mt-8 w-[280px]">
         {intro.trim() === "" ? (
           <div className="typing-demo text-2xl">$:</div>
         ) : (

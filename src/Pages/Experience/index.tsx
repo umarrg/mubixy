@@ -36,7 +36,7 @@ export const ExperienceScreen = () => {
       </div>
 
       <div className="grid grid-cols-2 gap-4text-white place-items-center items-start mt-3    ">
-        <div className="hidden md:block">
+        <div className="hidden md:block  ">
           <div className="bg-white w-[1px] h-96 relative">
             <div className="flex items-center absolute top-[2rem]">
               <div
@@ -170,7 +170,7 @@ export const ExperienceScreen = () => {
             </div>
           </div>
         </div>
-        <div className="hidden md:block">
+        <div className="hidden md:block ml-[-30px]">
           {janguClick && (
             <div>
               {experience[2]?.title.trim() === "" ? (
