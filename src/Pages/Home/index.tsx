@@ -47,7 +47,7 @@ export const Home = ({email, about, intro, qoute, twitter, github, linkdin}:Home
       <div className="hidden md:block fixed top-24 right-8">
         <a
           href="mailto:mubarak@codeswot.io"
-          className="rotate-180 font-bold opacity-30"
+          className="rotate-180 font-bold "
           style={{ writingMode: "vertical-lr" }}
         >
           {email}
